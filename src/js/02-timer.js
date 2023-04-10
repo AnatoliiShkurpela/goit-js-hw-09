@@ -34,7 +34,6 @@ const fp = flatpickr('#datetime-picker', {
   },
 });
 //========================================================
-
 function timerStart() {
     refs.button.disabled = true;
     refs.input.disabled = true;
