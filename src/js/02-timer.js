@@ -1,7 +1,7 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-//======================================================
+//============================================
 const refs = {
   input: document.querySelector('#datetime-picker'),
   button: document.querySelector('[data-start]'),
@@ -13,7 +13,7 @@ const refs = {
 refs.button.disabled = true;
 refs.button.addEventListener('click', timerStart);
 let targetTime = null;
-//======================================================
+//============================================
 let datePicker = '';
 const fp = flatpickr('#datetime-picker', {
   enableTime: false,
@@ -33,7 +33,8 @@ const fp = flatpickr('#datetime-picker', {
     } 
   },
 });
-//========================================================
+//============================================
+
 function timerStart() {
     refs.button.disabled = true;
     refs.input.disabled = true;
@@ -52,28 +53,28 @@ function timerStart() {
     refs.seconds.textContent = `${seconds}`
   }, 1000);
 }
-//===========================================================
+//============================================
 function convertMs(ms) {
-    // Number of milliseconds per unit of time
-    const second = 1000;
-    const minute = second * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
-  
-    // Remaining days
-    const days = ddLeadingZero(Math.floor(ms / day));
-    // Remaining hours
-    const hours = ddLeadingZero(Math.floor((ms % day) / hour));
-    // Remaining minutes
-    const minutes = ddLeadingZero(Math.floor(((ms % day) % hour) / minute));
-    // Remaining seconds
-    const seconds = ddLeadingZero(
-      Math.floor((((ms % day) % hour) % minute) / second)
-    );
-  
-    return { days, hours, minutes, seconds };
-  }
-  //===========================================================
-  function ddLeadingZero(value) {
-    return String(value).padStart(2, '0');
-  }
+  // Number of milliseconds per unit of time
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  // Remaining days
+  const days = ddLeadingZero(Math.floor(ms / day));
+  // Remaining hours
+  const hours = ddLeadingZero(Math.floor((ms % day) / hour));
+  // Remaining minutes
+  const minutes = ddLeadingZero(Math.floor(((ms % day) % hour) / minute));
+  // Remaining seconds
+  const seconds = ddLeadingZero(
+    Math.floor((((ms % day) % hour) % minute) / second)
+  );
+
+  return { days, hours, minutes, seconds };
+}
+//============================================
+function ddLeadingZero(value) {
+  return String(value).padStart(2, '0');
+}
